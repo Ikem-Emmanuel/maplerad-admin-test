@@ -1,29 +1,51 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+// Layouts
+import AuthLayout from "@/components/templates/layouts/AuthLayout.vue";
+import DashboardLayout from "@/components/templates/layouts/DashboardLayout.vue";
+
+Vue.use(VueRouter);
+
+// Lazy load function
+function lazyLoad(view) {
+  return () => import(`@/views/${view}.vue`);
+}
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    component: AuthLayout, // Use the AuthLayout for authentication pages
+    children: [
+      {
+        path: "/",
+        name: "Login",
+        component: lazyLoad("auth/Login"),
+      },
+      {
+        path: "/auth/otp",
+        name: "Otp",
+        component: lazyLoad("auth/Otp"),
+      },
+    ],
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
+    path: "/dashboard",
+    component: DashboardLayout,
+    children: [
+      {
+        path: "",
+        name: "Dashboard",
+        component: lazyLoad("dashboard"),
+      },
+    ],
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
