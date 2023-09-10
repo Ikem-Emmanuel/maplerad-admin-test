@@ -36,7 +36,7 @@ const routes = [
       {
         path: "",
         name: "Dashboard",
-        component: lazyLoad("dashboard"),
+        component: lazyLoad("Dashboard"),
       },
     ],
   },

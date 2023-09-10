@@ -5,18 +5,19 @@
 </template>
 
 <script>
+
 export default {
-	name:'AppText',
+  name: "AppText",
   props: {
     type: {
       type: String,
       required: true,
-      validator: value => ['header', 'subheader', 'text'].includes(value),
+      validator: (value) => ["header", "subheader", "text"].includes(value),
     },
     cStyle: String,
     textStyle: {
       type: String,
-      default: 'text-base font-normal dark:text-secondary text-dark',
+      default: "text-base font-normal dark:text-secondary text-dark",
     },
   },
 };

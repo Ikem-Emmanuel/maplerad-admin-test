@@ -2,7 +2,7 @@
   <button
     :type="type"
     :class="[
-      'px-4 focus:outline-none h-10 py-2.5 ',
+      'px-4 focus:outline-none h-12 py-2.5 ',
       styles,
       {
         'w-full': isFullWidth,
