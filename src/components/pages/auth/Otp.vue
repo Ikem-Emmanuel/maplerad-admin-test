@@ -17,7 +17,7 @@
         To confirm your identity, enter the 6-digit sent to your email.
       </p>
       <div class="my-6">
-        <Otp :length="6" @onFilled="handleOtpFilled" />
+        <Otp :length="6" type="number" @onFilled="handleOtpFilled" />
       </div>
       <Button
         type="submit"
