@@ -2,7 +2,7 @@
   <div>
     <apexchart
       :width="width"
-      height="150"
+      height="300"
       :type="type"
       :options="chartOptions"
       :series="chartData"
@@ -30,7 +30,7 @@ export default {
       chartOptions: {
         chart: {
           id: "line",
-          type: "line",
+          type: "area",
           height: 500,
           width: 1000,
           foreColor: "#BFBFBF",
@@ -39,10 +39,9 @@ export default {
             show: false,
           },
         },
-        colors: ["#476EF9"],
+        colors: ["#AEF378"],
         stroke: {
           width: 2,
-          curve: "smooth",
         },
         grid: {
           borderColor: "#F3F4F6",
@@ -65,14 +64,16 @@ export default {
           },
         },
         markers: {
-          show: false,
+          size: 5,
+          colors: ["#fff"],
+          strokeColor: "#AEF378",
+          strokeWidth: 2,
         },
         xaxis: {
-          categories: ["July 6", "", "", "", "", "", "Today"],
+          categories: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
           // type: "datetime",
         },
         yaxis: {
-          show: false,
           min: 0,
           max: 40,
           tickAmount: 4,

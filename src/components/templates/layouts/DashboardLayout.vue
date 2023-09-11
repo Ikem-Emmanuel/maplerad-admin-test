@@ -10,7 +10,7 @@
       >
         <Navbar />
         <div class="p-6 mb-20 h-screen">
-          <div class="overflow-y-auto">
+          <div class="pb-32">
             <router-view></router-view>
           </div>
         </div>

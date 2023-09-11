@@ -15,7 +15,7 @@ function lazyLoad(view) {
 const routes = [
   {
     path: "/",
-    component: AuthLayout, // Use the AuthLayout for authentication pages
+    component: AuthLayout,
     children: [
       {
         path: "/",
@@ -30,13 +30,18 @@ const routes = [
     ],
   },
   {
-    path: "/dashboard",
+    path: "",
     component: DashboardLayout,
     children: [
       {
-        path: "",
+        path: "/dashboard",
         name: "Dashboard",
         component: lazyLoad("Dashboard"),
+      },
+      {
+        path: "/fxConversion",
+        name: "FX Conversion",
+        component: lazyLoad("FxConversion"),
       },
     ],
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="px-6 py-8 rounded-2xl shadow-md" :class="cardStyle">
+  <div class="px-6 py-8 rounded-2xl" :class="cardStyle">
     <slot></slot>
   </div>
 </template>

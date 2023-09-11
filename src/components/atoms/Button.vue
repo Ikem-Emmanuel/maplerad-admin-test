@@ -12,13 +12,19 @@
     @click="handleClick"
   >
     <div class="flex flex-row gap-4 items-center justify-center">
-      <template v-if="leftIcon">
-        <mpImage :path="leftIcon" :imgStyle="'w-5'" altText="My Image" />
-      </template>
+      <mpImage
+        v-if="leftIcon"
+        :path="leftIcon"
+        :imgStyle="'w-5 mb-0'"
+        altText="My Image"
+      />
       <span>{{ label }}</span>
-      <template v-if="rightIcon">
-        <mpImage :path="rightIcon" :imgStyle="'w-5'" altText="My Image" />
-      </template>
+      <mpImage
+        v-if="rightIcon"
+        :path="rightIcon"
+        :imgStyle="'w-5 mb-0'"
+        altText="My Image"
+      />
     </div>
   </button>
 </template>
