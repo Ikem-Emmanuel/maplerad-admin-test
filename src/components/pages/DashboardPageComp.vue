@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-20">
     <div class="flex flex-col gap-10">
       <Card cardStyle="w-full rounded-[20px] py-6 bg-mpGrey100">
         <div class="flex flex-col items-start gap-4">

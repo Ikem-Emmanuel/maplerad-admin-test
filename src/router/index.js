@@ -37,13 +37,13 @@ const routes = [
       {
         path: "/dashboard",
         name: "Dashboard",
-        component: lazyLoad("Dashboard"),
+        component: lazyLoad("DashboardPage"),
         meta: { requiresAuth: true },
       },
       {
         path: "/fxConversion",
         name: "FX Conversion",
-        component: lazyLoad("FxConversion"),
+        component: lazyLoad("FxConversionPage"),
         meta: { requiresAuth: true },
       },
     ],
