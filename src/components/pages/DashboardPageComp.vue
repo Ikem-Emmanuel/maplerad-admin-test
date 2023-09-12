@@ -32,14 +32,14 @@
             />
           </div>
         </div>
-        <div class="grid grid-cols-4 place-content-center">
+        <div class="grid grid-cols-4 gap-5 place-content-center">
           <div
             class="col-span-4 md:col-span-3 xl:col-span-3 order-2 md:order-1"
           >
             <AreaChart :chart-data="overViewChartData" :type="'area'" />
           </div>
           <div
-            class="md:col-span-1 xl:col-span-1 flex flex-row col-span-4 order-1 md:order-2 justify-between md:flex-col md:justify-evenly xl:flex-col gap-4"
+            class="md:col-span-1 xl:col-span-1 flex flex-row col-span-4 order-1 md:order-2 justify-between md:flex-col md:justify-evenly xl:flex-col xl:gap-6"
           >
             <div class="py-5 px-2">
               <h1 class="text-[#6B7280] font-medium text-sm mb-1">Revenue</h1>
