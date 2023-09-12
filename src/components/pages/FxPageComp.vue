@@ -179,7 +179,7 @@
               :label="'Convert'"
               styles="text-secondary bg-primary hover:bg-mpGrey200 text-sm xl:text-base rounded-xl font-medium mt-8 cursor-pointer"
               :isFullWidth="true"
-              :clickHandler="convertCurrency"
+              @click="convertCurrency"
             />
           </Card>
         </div>
