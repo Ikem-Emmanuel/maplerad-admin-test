@@ -1,22 +1,22 @@
 # maplerad-admin-test
 
-# Deve: Emmanuel Ikem (ikem43@gmail.com)
+# Dev: Emmanuel Ikem (ikem43@gmail.com)
 
 ## Project setup
 
 ```
-
-To set up the project, follow these steps:
+**yarn install**
+To set up the project, follow these steps and run the command above:
 1. Clone the repository to your local machine:
 2. Navigate to the project directory:
-3. Install project dependencies using Yarn (yarn install):
+3. Install project dependencies using Yarn (**yarn install**):
 
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development and running the app
 
 ```
-yarn serve
+**yarn serve**
 To run the app in development mode with hot-reloading, use the following command above:
 The app will be available at [http://localhost:8080](http://localhost:8080) in your browser.
 
@@ -25,14 +25,14 @@ The app will be available at [http://localhost:8080](http://localhost:8080) in y
 ### Compiles and minifies for production
 
 ```
-yarn build
-To build the app for production with minification, use the following command:
+**yarn build**
+To build the app for production with minification, use the following command above:
 ```
 
 ### Lints and fixes files
 
 ```
-yarn lint
+**yarn lint**
 You can lint and fix project files using the following command:
 ```
 
