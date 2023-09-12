@@ -73,7 +73,6 @@ export default {
             }
           }
         } else {
-          // If we are not on the last index, prevent entering more than one character
           return;
         }
       } else {
@@ -87,6 +86,9 @@ export default {
         if (text.length === 1 && index < this.length - 1) {
           this.$refs[`otp-input-${index + 1}`][0].focus();
         }
+      }
+      if (this.otpValues.join("").length === this.length) {
+        this.$emit("otpChange", this.otpValues.join(""));
       }
     },
 

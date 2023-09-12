@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Otp from "@/components/pages/auth/Otp.vue";
+import Otp from "@/components/pages/auth/OtpComp.vue";
 
 export default {
   name: "OtpPage",

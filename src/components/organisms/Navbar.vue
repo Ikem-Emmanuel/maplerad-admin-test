@@ -24,7 +24,9 @@
 
       <!-- right navbar -->
       <div class="flex items-center gap-5 relative">
-        <div class="flex flex-row items-center gap-2 py-1 px-2">
+        <div
+          class="hidden flex-row items-center gap-2 py-1 px-2 md:flex lg:flex xl:flex"
+        >
           <mpImage
             :path="Images.developer"
             :imgStyle="'w-5 items-center'"
@@ -42,12 +44,14 @@
           :imgStyle="'w-5 items-center'"
           altText="arrow_down"
         />
-        <div class="flex flex-row items-center gap-4 py-1 px-2">
+        <div
+          class="flex flex-row items-center gap-4 py-1 px-2 cursor-pointer"
+          @click="dropDownOpen = !dropDownOpen"
+        >
           <mpImage
             :path="Images.user_icon"
             :imgStyle="'w-10 h-10 rounded-full'"
             altText="arrow_down"
-            @click="dropDownOpen = !dropDownOpen"
           />
           <div>
             <p class="text-secondary font-medium text-sm">Chidalu Ugwu</p>
@@ -66,12 +70,15 @@
 
     <!-- dropdown menu -->
     <div
-      class="absolute bg-gray-100 border border-t-0 shadow-xl text-gray-700 rounded-b-lg w-48 bottom-10 right-0 mr-6"
+      class="absolute bg-gray-100 border border-t-0 shadow-xl text-gray-700 rounded-b-lg w-48 bottom-0 -mb-10 right-0 mr-6"
       :class="dropDownOpen ? '' : 'hidden'"
     >
-      <a href="#" class="block px-4 py-2 hover:bg-gray-200">Account</a>
-      <a href="#" class="block px-4 py-2 hover:bg-gray-200">Settings</a>
-      <a href="#" class="block px-4 py-2 hover:bg-gray-200">Logout</a>
+      <p
+        @click.prevent="logout"
+        class="block px-4 py-2 hover:bg-gray-200 cursor-pointer"
+      >
+        Logout
+      </p>
     </div>
     <!-- dropdown menu end -->
   </div>
@@ -79,8 +86,10 @@
 
 <script>
 import mpImage from "@/components/atoms/mpImage.vue";
+import { clearStorage } from "@/utils/helper";
 import Images from "@/utils/images";
 import { mapState } from "vuex";
+
 export default {
   name: "NavbarComponent",
   components: { mpImage },
@@ -96,6 +105,10 @@ export default {
   methods: {
     toggleSidebar() {
       this.$store.dispatch("toggleSidebar");
+    },
+    logout() {
+      clearStorage();
+      window.location.href = "/";
     },
   },
 };

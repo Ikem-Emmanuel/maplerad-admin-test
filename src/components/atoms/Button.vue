@@ -1,15 +1,15 @@
 <template>
   <button
-    :type="type"
     :class="[
-      'px-4 focus:outline-none h-12 py-2.5 ',
       styles,
+      'px-4 focus:outline-none h-12 py-2.5 text-secondary bg-mpGrey400',
       {
         'w-full': isFullWidth,
         rounded: isRounded,
       },
     ]"
-    @click="handleClick"
+    :disabled="disabled"
+    @click.prevent="$emit('click')"
   >
     <div class="flex flex-row gap-4 items-center justify-center">
       <mpImage
@@ -40,7 +40,6 @@ export default {
       required: true,
     },
     styles: String,
-    clickHandler: Function,
     isRounded: {
       type: Boolean,
       default: false,
@@ -49,16 +48,11 @@ export default {
       type: Boolean,
       default: false,
     },
-    type: String,
     leftIcon: String,
     rightIcon: String,
-  },
-  methods: {
-    handleClick() {
-      if (this.clickHandler) {
-        this.clickHandler();
-      }
-    },
+    loading: { type: Boolean, default: false },
+    inline: String,
+    disabled: { type: Boolean },
   },
 };
 </script>

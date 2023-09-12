@@ -8,13 +8,13 @@
           </h1>
           <Stepper />
           <p
-            class="text-[#374151] font-normal text-base leading-[-0.32px] -mt-1 mb-1"
+            class="text-[#374151] font-normal text-sm xl:text-base leading-[-0.32px] -mt-1 mb-1"
           >
-            Step 1: Tell us more about your business to get started.
+            Step 1: Tell us more about your business to get started..
           </p>
           <Button
             :label="'Continue compliance'"
-            styles="text-secondary bg-primary hover:bg-primary/70 rounded-xl h-10 font-semibold px-2 text-xs xl:text-base w-1/5"
+            styles="text-secondary bg-primary hover:bg-primary/70 rounded-xl h-10 font-semibold px-2 text-xs xl:text-base w-full lg:w-2/6 xl:w-[25%]"
             :isFullWidth="false"
             :rightIcon="Images.arrowRight_icon"
           />
@@ -33,14 +33,14 @@
           </div>
         </div>
         <div class="grid grid-cols-4 place-content-center">
-          <div class="col-span-3">
-            <AreaChart
-              :chart-data="overViewChartData"
-              :width="'900'"
-              :type="'area'"
-            />
+          <div
+            class="col-span-4 md:col-span-3 xl:col-span-3 order-2 md:order-1"
+          >
+            <AreaChart :chart-data="overViewChartData" :type="'area'" />
           </div>
-          <div class="col-span-1 flex flex-col gap-4">
+          <div
+            class="md:col-span-1 xl:col-span-1 flex flex-row col-span-4 order-1 md:order-2 justify-between md:flex-col md:justify-evenly xl:flex-col gap-4"
+          >
             <div class="py-5 px-2">
               <h1 class="text-[#6B7280] font-medium text-sm mb-1">Revenue</h1>
               <h1 class="text-secondary font-[600] text-2xl">$0.00</h1>
@@ -58,7 +58,7 @@
         <div
           class="flex flex-row items-start justify-between w-full border-b-[1px] border-[#E5E7EB]"
         >
-          <div>
+          <div class="w-1/2 md:w-full">
             <h1 class="text-secondary font-[600] text-2xl">Reports</h1>
             <p class="text-[#6B7280] lg:text-sm text-xs mb-5">
               View all transaction made to your account
@@ -71,7 +71,9 @@
             :rightIcon="Images.arrowRight_icon"
           />
         </div>
-        <div class="grid grid-cols-4 gap-5 place-content-center">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 justify-center xl:grid-cols-4 gap-5 place-content-center"
+        >
           <div>
             <div class="py-5 px-2">
               <div class="flex flex-row items-center gap-2 mb-1">
@@ -189,6 +191,7 @@ export default {
       ],
     };
   },
+
   methods: {
     handleButtonClick() {
       this.$router.push("/auth/otp");

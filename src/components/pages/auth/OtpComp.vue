@@ -5,7 +5,9 @@
       :imgStyle="'w-[100px] xl:w-[120px] items-center'"
       altText="My Image"
     />
-    <Card cardStyle="lg:w-[504px] md:w-2/3 sm:w-full">
+    <Card
+      cardStyle="lg:w-[504px] bg-white rounded-[16px] shadow md:w-2/3 sm:w-full"
+    >
       <h1
         class="font-extrabold text-secondary text-2xl xl:text-3xl text-center"
       >
@@ -17,13 +19,15 @@
         To confirm your identity, enter the 6-digit sent to your email.
       </p>
       <div class="my-6">
-        <Otp :length="6" type="number" @onFilled="handleOtpFilled" />
+        <Otp :length="6" type="number" @otpChange="handleOtpFilled" />
       </div>
       <Button
-        type="submit"
-        :label="'Submit'"
-        styles="text-secondary bg-primary hover:bg-primary/70 rounded-xl font-medium text-sm h-10 xl:text-base"
+        label="Sign in"
+        :styles="buttonStyles"
         :isFullWidth="true"
+        @click="handleSubmit"
+        :loading="isLoading"
+        :disabled="isLoading || !otp"
       />
       <p
         class="font-normal text-Lighter text-sm lg:text-base text-center w-full mt-4 mb-8"
@@ -38,8 +42,8 @@
           :leftIcon="Images.goBack_icon"
           :label="'Go back to login'"
           styles="text-secondary bg-mpGrey300 hover:bg-mpGrey200 text-sm xl:text-[18px] xl:h-12 rounded-xl font-medium"
-          :clickHandler="handleButtonClick"
           :isFullWidth="true"
+          @click="navigateToHome"
         />
       </router-link>
     </Card>
@@ -56,6 +60,7 @@ import Button from "@/components/atoms/Button.vue";
 import Otp from "@/components/atoms/Otp.vue";
 import mpImage from "@/components/atoms/mpImage.vue";
 import Card from "@/components/organisms/Card.vue";
+import { getErrorMessage, setStorage } from "@/utils/helper";
 import Images from "@/utils/images";
 
 export default {
@@ -64,23 +69,65 @@ export default {
   data() {
     return {
       Images,
+      otp: "",
+      userEmail: "",
+      isLoading: false,
     };
+  },
+
+  computed: {
+    buttonStyles() {
+      if (!this.otp) {
+        return "rounded-xl font-semibold text-sm xl:text-base bg-mpGrey300 text-secondary cursor-not-allowed";
+      } else {
+        return "hover:bg-primary/70 rounded-xl font-medium text-sm xl:text-base bg-primary";
+      }
+    },
+  },
+
+  created() {
+    this.userEmail = this.$store.state.userEmail;
+    console.log(this.$store.state.userEmail);
   },
   methods: {
     handleOtpFilled(otpValue) {
-      // This method is called when the user has entered the OTP
-      console.log("OTP Entered:", otpValue);
-
-      // You can perform further actions, such as sending the OTP for verification
+      this.otp = otpValue;
+      console.log(this.userEmail);
     },
-    handleButtonClick(otpValue) {
-      // This method is called when the user has entered the OTP
-      console.log("OTP Entered:", otpValue);
-
-      // You can perform further actions, such as sending the OTP for verification
+    handleSubmit() {
+      if (this.top) {
+        return;
+      } else {
+        this.isLoading = true;
+        let data = {
+          email: this.userEmail,
+          otp: this.otp,
+        };
+        this.$store
+          .dispatch("verifyOtp", data)
+          .then((res) => {
+            const userData = {
+              logged: true,
+            };
+            if (res.status === 200) {
+              this.$toast.success("Welcome, you have successfully logged in!");
+              setStorage("obj", JSON.stringify(userData));
+              this.$store.dispatch("updateLoggedInState", true);
+              this.$router.push("/dashboard");
+            }
+            this.isLoading = false;
+          })
+          .catch((err) => {
+            this.$toast.error(getErrorMessage(err));
+            this.isLoading = false;
+          });
+      }
     },
     resendCode() {
       console.log("OTP Sent:");
+    },
+    navigateToHome() {
+      this.$router.push("/");
     },
   },
 };

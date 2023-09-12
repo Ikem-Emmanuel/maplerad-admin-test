@@ -1,15 +1,15 @@
 <template>
-  <div>
+  <div class="flex items-center justify-center">
     <apexchart
-      :width="width"
       height="300"
+      :width="AreaChartWidth"
       :type="type"
       :options="chartOptions"
       :series="chartData"
     ></apexchart>
   </div>
 </template>
-
+<!-- :width="AreaChartWidth" -->
 <script>
 import VueApexCharts from "vue-apexcharts";
 
@@ -32,7 +32,7 @@ export default {
           id: "line",
           type: "area",
           height: 500,
-          width: 1000,
+          width: "100%",
           foreColor: "#BFBFBF",
           toolbar: {
             autoSelected: "pan",
@@ -84,6 +84,21 @@ export default {
             },
           },
         },
+        responsive: [
+          {
+            breakpoint: 1000,
+            options: {
+              plotOptions: {
+                bar: {
+                  horizontal: false,
+                },
+              },
+              legend: {
+                position: "bottom",
+              },
+            },
+          },
+        ],
         tooltip: {
           theme: "dark",
           marker: {
@@ -109,7 +124,38 @@ export default {
           },
         },
       },
+      AreaChartWidth: 0,
     };
+  },
+  created() {
+    this.handleResize();
+    window.addEventListener("resize", this.handleResize);
+  },
+  beforeMount() {
+    window.removeEventListener("resize", this.handleResize);
+  },
+  methods: {
+    handleResize() {
+      const width = window.innerWidth;
+      console.log(width);
+      if (width > 320 && width < 480) {
+        this.AreaChartWidth = "300";
+      } else if (width > 481 && width < 768) {
+        this.AreaChartWidth = "320";
+      } else if (width > 769 && width < 1024) {
+        this.AreaChartWidth = "500";
+      } else if (width > 1025 && width < 1200) {
+        this.AreaChartWidth = "600";
+      } else if (width > 1201 && width < 1400) {
+        this.AreaChartWidth = "650";
+      } else if (width > 1401 && width < 1500) {
+        this.AreaChartWidth = "850";
+      } else if (width > 1501) {
+        this.AreaChartWidth = "1000";
+      } else {
+        this.AreaChartWidth = "900";
+      }
+    },
   },
 };
 </script>
